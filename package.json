@@ -1,30 +1,31 @@
 {
-  "dependencies": {
-    "express": "^5.1.0",
-    "init": "^0.1.2",
-    "mongoose": "^8.19.1",
-    "mongosh": "^2.5.8"
-  },
-  "name": "expressjs-si52-2025-2026-kuis-1-marccz01",
+  "name": "expressjs-si52-2025-2026-michaelrevaldi",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-  },
+  "type" : "module",
   "scripts": {
     "dev": "nodemon app.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Let-sLearnCodingTogether/expressjs-si52-2025-2026-kuis-1-marccz01.git"
+    "type": "module",
+    "url": "git+https://github.com/Let-sLearnCodingTogether/expressjs-si52-2025-2026-MichaelRevaldi.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Let-sLearnCodingTogether/expressjs-si52-2025-2026-kuis-1-marccz01/issues"
+    "url": "https://github.com/Let-sLearnCodingTogether/expressjs-si52-2025-2026-MichaelRevaldi/issues"
   },
-  "homepage": "https://github.com/Let-sLearnCodingTogether/expressjs-si52-2025-2026-kuis-1-marccz01#readme"
+  "homepage": "https://github.com/Let-sLearnCodingTogether/expressjs-si52-2025-2026-MichaelRevaldi#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "brcypt": "^1.0.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.3",
+    "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
+  }
 }

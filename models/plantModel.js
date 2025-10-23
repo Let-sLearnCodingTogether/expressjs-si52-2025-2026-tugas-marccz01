@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const PlantSchema = new mongoose.Schema(
     {
-        name: {
+        plantName: {
             type: String,
-            required: true,
+            required: [true, "Nama tanaman wajib di isi"],
             trim: true
         },
         species: {
@@ -13,7 +13,7 @@ const PlantSchema = new mongoose.Schema(
         },
         lastWatered: {
             type: Date,
-            default: Date.now
+            default: Date
         },
         wateringSchedule: {
             type: Number, // Interval hari (misalnya: 7 hari)
