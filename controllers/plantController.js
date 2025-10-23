@@ -1,4 +1,4 @@
-import plantModel from "../models/plantModel.js"
+import plantModel from "../models/plant.js"
 
 export const listPlant = async (req,res) => {
     try {
@@ -20,14 +20,14 @@ export const createPlant = async (req,res) => {
     try {
         const request = req.body
 
-        const response = await plantModel.create({
+        const response = await plant .create({
             plantNameame : request.plantName,
             species : request.species,
             lastWatered : request.date
         })
 
         res.status(201).json({
-            tanaman : "Data pelacakan tanaman berhasil dibuat",
+            tanaman : "Data tanaman berhasil dibuat",
             data : response
         })
         
@@ -58,13 +58,13 @@ export const updatePlant = async (req,res) => {
 
         if(!response){
             return res.status(500).json({
-                tanaman : "Data pelacakan tanaman gagal diupdate",
+                tanaman : "Data tanaman gagal diupdate",
                 data : null
             })
         }
 
         return res.status(200).json({
-            tanaman : "Data pelacakan tanaman berhasil diupdate"
+            tanaman : "Data tanaman berhasil diupdate"
         })
 
     } catch (error) {
@@ -90,13 +90,13 @@ export const deletePlant = async (req,res) => {
 
         if(response){
             return res.status(200).json({
-                tanaman : "Data pelacakan tanaman berhasil dihapus",
+                tanaman : "Data tanaman berhasil dihapus",
                 data : null
             })
         }
 
         return res.status(404).json({
-                tanaman : "Data pelacakan tanaman tidak ditemukan",
+                tanaman : "Data tanaman tidak ditemukan",
                 data : null
             })
 
