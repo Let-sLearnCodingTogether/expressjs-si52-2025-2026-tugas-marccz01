@@ -1,3 +1,5 @@
+import {compare, hash} from "../utils/hashUtil.js";
+import { jwtSignUtil } from "../utils/jwtSignUtil.js";
 import UserModel from "../models/user.js"
 
 export const register = async (req, res) => {
@@ -8,7 +10,7 @@ export const register = async (req, res) => {
 
         const hashPassword = hash(registerData.password)
 
-        await User.create({
+        await UserModel.create({
             username : registerData.username,
             email : registerData.email,
             password : hashPassword
@@ -63,4 +65,21 @@ export const login = async (req, res) => {
             data: null
         })
     }
+}
+
+export const showProfile = async (req, res) => {
+  try {
+    const user = await user.findById(req.user.id).select("-password");
+    if (!user) return res.status(404).json({ message: "User tidak ditemukan" });
+
+    res.status(200).json({
+      message: "Data profile ditemukan",
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+      data: null
+    });
+  }
 }

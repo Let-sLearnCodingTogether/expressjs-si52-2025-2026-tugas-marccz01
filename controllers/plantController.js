@@ -1,4 +1,4 @@
-import plantModel from "../models/plant.js"
+import plantModel from "../models/plantModel.js"
 
 export const listPlant = async (req,res) => {
     try {
@@ -20,8 +20,8 @@ export const createPlant = async (req,res) => {
     try {
         const request = req.body
 
-        const response = await plant .create({
-            plantNameame : request.plantName,
+        const response = await plant.create({
+            plantName : request.plantName,
             species : request.species,
             lastWatered : request.date
         })

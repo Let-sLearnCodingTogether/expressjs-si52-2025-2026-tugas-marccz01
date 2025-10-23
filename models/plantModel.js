@@ -27,6 +27,6 @@ const PlantSchema = new mongoose.Schema(
     }
 )
 
-const Plant = mongoose.model("plant", PlantSchema)
+const plantModel = mongoose.model("plant", PlantSchema)
 
-export default Plant
+export default plantModel
