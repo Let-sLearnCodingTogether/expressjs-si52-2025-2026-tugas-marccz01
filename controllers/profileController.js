@@ -10,4 +10,4 @@ export const privateProfile = async (req, res) => {
             data: null,
         });
     }
-};
+}

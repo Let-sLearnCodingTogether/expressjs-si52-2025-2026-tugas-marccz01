@@ -1,9 +1,10 @@
 import {compare, hash} from "../utils/hashUtil.js";
 import { jwtSignUtil } from "../utils/jwtSignUtil.js";
-import UserModel from "../models/user.js"
+import UserModel from "../models/userModel.js"
 
 export const register = async (req, res) => {
     try {
+        // Untuk mengambil body atau data dari request
         const registerData = req.body
 
         console.log(registerData);
@@ -32,10 +33,12 @@ export const login = async (req, res) => {
         try {
             const loginData = req.body
 
+            //Mencari user berdasarkan email
             const user = await UserModel.findOne({
                 email: loginData.email
             })
 
+        //Jika user tidak ditemukan
         if (!user) {
             res.status(404).json({
                 message: "User tidak ditemukan",
@@ -43,13 +46,14 @@ export const login = async (req, res) => {
             })
         }
 
+        //Membandingkan password yang ada didalam db dengan request
         if (compare(loginData.password, user.password)){
             return res.status(200).json({
                 message : "Login Berhasil",
                 data : {
                     username : user.username,
                     email : user.email,
-                    token : jwtSignUtil (user)
+                    token : jwtSignUtil (user) // Untuk Melakukan Sign JWT TOKEN (Tambahkan jg di utils)
                 }
             })
         }
@@ -65,21 +69,4 @@ export const login = async (req, res) => {
             data: null
         })
     }
-}
-
-export const showProfile = async (req, res) => {
-  try {
-    const user = await user.findById(req.user.id).select("-password");
-    if (!user) return res.status(404).json({ message: "User tidak ditemukan" });
-
-    res.status(200).json({
-      message: "Data profile ditemukan",
-      data: user,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-      data: null
-    });
-  }
 }
