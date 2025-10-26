@@ -1,5 +1,5 @@
 import express from "express"
-import api from "./routes/api.js"
+import api from "./route/api.js"
 import { database } from "./config/database.js"
 
 import passport from "passport"
@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use(passport.initialize())
 
-app.use(express.static('public'))
+app.use(express.static('public'))   
 
 app.set('view engine', 'ejs')
 

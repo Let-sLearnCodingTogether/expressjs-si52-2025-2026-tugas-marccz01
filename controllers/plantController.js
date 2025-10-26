@@ -5,7 +5,7 @@ export const listPlant = async (req,res) => {
         const data = await plantModel.find({})
 
         res.status(200).json({
-            message : "Jadwal Pelacak Tanaman berhasil diambil",
+            message : "Jadwal Tanaman berhasil dibuat",
             data : data
         })
     } catch (error) {
@@ -18,12 +18,12 @@ export const listPlant = async (req,res) => {
 
 export const createPlant = async (req,res) => {
     try {
-        const { plantName, species, lastWatered } = req.body;
+        const request = req.body;
 
         const response = await plantModel.create({
-            plantName,
-            species,
-            lastWatered
+            plantName : request.plantName,
+            species : request.species,
+            lastWatered : request.lastWatered
         })
 
         res.status(201).json({
@@ -33,38 +33,39 @@ export const createPlant = async (req,res) => {
         
     } catch (error) {
         res.status(500).json({
-            message : error,
+            message : error.message,
             data : null
         })
     }
 }
 
-export const updatePlant = async (req,res) => {
-    try {
-        const id = req.params?.id
+export const updatePlant = async (req, res) => {
+  try {
+    const id = req.params?.id
         const request = req.body
 
         if(!id){
             return res.status(500).json({
-                message : "Id wajib di isi",
+                message : "Id wajib diisi",
                 data : null
             })
         }
 
          const response = await plantModel.findByIdAndUpdate(id, {
             plantName : request.plantName,
+            species : request.species,
             lastWatered : request.lastWatered
          })
 
         if(!response){
             return res.status(500).json({
-                message : "Data tanaman gagal diupdate",
+                message : "Data Tanaman gagal diupdate",
                 data : null
             })
         }
 
         return res.status(200).json({
-            message : "Data tanaman berhasil diupdate"
+            message : "Data Tanaman berhasil diupdate"
         })
 
     } catch (error) {
@@ -72,7 +73,7 @@ export const updatePlant = async (req,res) => {
             message : error,
             data : null
         })
-    }
+  }
 }
 
 export const deletePlant = async (req,res) => {
@@ -102,7 +103,7 @@ export const deletePlant = async (req,res) => {
 
     } catch (error) {
         res.status(500).json({
-            message : error,
+            message : error.message,
             data : null
         })
     }

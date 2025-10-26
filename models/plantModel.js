@@ -13,12 +13,7 @@ const PlantSchema = new mongoose.Schema(
         },
         lastWatered: {
             type: Date,
-            default: Date
-        },
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true
+            default: Date.now
         }
     },
 
