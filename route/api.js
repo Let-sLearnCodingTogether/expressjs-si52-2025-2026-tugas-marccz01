@@ -9,7 +9,7 @@ const api = express.Router();
 api.post('/register', authController.register);
 api.post('/login', authController.login);
 
-api.get('/profile', protect, profileController.privateProfile);
+api.get('/me', protect, profileController.privateProfile);
 
 api.post("/plant", plantController.createPlant);
 api.get("/plant", plantController.listPlant);
