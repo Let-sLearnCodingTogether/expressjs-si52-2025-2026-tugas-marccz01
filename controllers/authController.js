@@ -4,7 +4,7 @@ import UserModel from "../models/userModel.js"
 
 export const register = async (req, res) => {
     try {
-        // Untuk mengambil body atau data dari request
+
         const registerData = req.body
 
         console.log(registerData);
@@ -15,10 +15,12 @@ export const register = async (req, res) => {
             username : registerData.username,
             email : registerData.email,
             password : hashPassword
+
         })
 
+
         res.status(201).json({
-            message : "Register Berhasil, silahkan login",
+            message : "Berhasil register, silahkan login",
             data : null
         })
     } catch(e) {
@@ -29,44 +31,37 @@ export const register = async (req, res) => {
     }
 }
 
-export const login = async (req, res) => {
-        try {
-            const loginData = req.body
+export const login = async(req, res) => {
+    try{
+        const loginData = req.body
 
-            //Mencari user berdasarkan email
-            const user = await UserModel.findOne({
-                email: loginData.email
-            })
+        const user = await UserModel.findOne({
+            email : loginData.email
 
-        //Jika user tidak ditemukan
-        if (!user) {
+        })
+
+
+        if (!user){
             res.status(404).json({
-                message: "User tidak ditemukan",
+                message : "User not found",
                 data : null
             })
         }
 
-        //Membandingkan password yang ada didalam db dengan request
-        if (compare(loginData.password, user.password)){
+        if(compare(loginData.password, user.password)){
             return res.status(200).json({
-                message : "Login Berhasil",
+                message: "Login berhasil",
                 data : {
                     username : user.username,
                     email : user.email,
-                    token : jwtSignUtil (user) // Untuk Melakukan Sign JWT TOKEN (Tambahkan jg di utils)
+                    token : jwtSignUtil(user) 
                 }
             })
         }
-
-        return res.status(401).json({
-            message : "Login Gagal",
-            data :null
-        })
-
-    } catch (error) {
-        res.status(500).json({
-            message: error,
-            data: null
-        })
+    } catch (error){
+    res.status(500).json({
+        message: error.message,
+        data : null
+    })
     }
 }
